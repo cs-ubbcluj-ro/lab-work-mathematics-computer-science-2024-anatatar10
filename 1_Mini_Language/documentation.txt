@@ -1,0 +1,48 @@
+
+Documentation
+
+1. Language Definition
+
+1.1 Alphabet
+The language includes:
+- Uppercase (A-Z) and lowercase (a-z) letters.
+- The underscore (_) character.
+- Decimal digits (0-9).
+
+1.2 Lexical Elements
+
+- Operators: +, -, %, /, :=, <, <=
+- Separators: [ ], { }, , , :, ;, space
+- Reserved Words: read, write, int, if, else, while, begin, end, then, var, do, bool, char, struct
+
+- Identifiers: Names must start with a letter, followed by letters or even digits (0, 2, 4, 6, 8).
+
+- Constants:
+  - Integers: Positive, negative, or unsigned numbers.
+  - Characters: Single characters enclosed in single quotes ('a', '1').
+
+2. Syntax
+
+2.1 Program Structure
+A program is defined between BEGIN and END:
+program ::= "BEGIN" stmt_list "END"
+
+2.2 Statements
+There are simple and structured statements:
+- Simple: Assignment or input/output.
+  - Assignment: identifier := expression
+  - Input/output: read(identifier) or write(identifier)
+
+- Structured: Compound, if, or while.
+  - Compound: A block of statements within BEGIN and END.
+  - If: Conditional statement with if, then, and optional else.
+  - While: Loop with while and do.
+
+2.3 Expressions
+Expressions use arithmetic operations:
+expression ::= term | expression "+" term | expression "-" term
+Terms are combined using *, /, % or constants/variables.
+
+2.4 Conditions
+Conditions compare two expressions using:
+rel_op ::= "<" | "<="
