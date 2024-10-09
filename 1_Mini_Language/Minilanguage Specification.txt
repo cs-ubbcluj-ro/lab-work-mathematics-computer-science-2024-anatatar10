@@ -1,0 +1,51 @@
+Language Definition
+
+1.1 Alphabet:
+1. a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
+2. b. Underscore character _
+3. c. Decimal digits (0-9)
+
+1.2 Lexical
+1. a. Special symbols:
+   - Operators: + - * % / := < <=
+   - Separators: [ ] { } , : ; space
+   - Reserved Words: read, write, int, if, else, while, begin, end, then, var, do, bool, char, struct
+
+2. b. Identifiers:
+   - A sequence of letters and digits, where the first character is a letter.
+   - Rule: identifier ::= letter {letter | digit}
+   - letter ::= "A" | "B" | ... | "Z" | "a" | "b" | ... | "z"
+   - digit ::= "0" | "2" | "4" | "6" | "8" (Only even digits are allowed)
+
+3. c. Constants:
+   - int_const ::= +no|-no|no
+   - no ::= digit {digit}
+   - char_const ::= "'" (letter | digit) "'"
+
+1.3 Syntax
+1. Program Structure
+   - program ::= 'BEGIN' stmt_list 'END'
+
+2. Statement Lists and Statements
+   - stmt_list ::= stmt | stmt ';' stmt_list
+   - stmt ::= stmt_simple | stmt_struct
+
+3. Simple Statements
+   - stmt_simple ::= stmt_assign | stmt_io
+   - stmt_assign ::= identifier ":=" expression
+   - stmt_io ::= "read" "(" identifier ")" | "write" "(" identifier ")"
+
+4. Structured Statements
+   - stmt_struct ::= stmt_cmpd | stmt_if | stmt_while
+   - stmt_cmpd ::= 'BEGIN' stmt_list 'END'
+   - stmt_if ::= 'if' condition 'THEN' stmt ['ELSE' stmt]
+   - stmt_while ::= 'WHILE' condition 'DO' stmt
+
+5. Conditions
+   - condition ::= expression rel_op expression
+   - rel_op ::= "<" | "<="
+
+6. Expressions and Terms
+   - expression ::= term | expression "+" term | expression "-" term
+   - term ::= factor | term "*" factor | term "/" factor | term "%" factor
+   - factor ::= "(" expression ")" | identifier | int_const

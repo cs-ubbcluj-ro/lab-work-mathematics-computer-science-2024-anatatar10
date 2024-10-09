@@ -1,0 +1,32 @@
+Problem: find the first k prime numbers
+
+BEGIN
+    var i, j, count, k : int;
+    var is_prime : bool;
+    
+    read(k);        // Input the number k (how many primes to find)
+    count := 0;     // Count of primes found 
+    i := 2;         // Start checking from the first prime number
+    
+    WHILE count < k DO
+    BEGIN
+        is_prime := true;
+        j := 2;
+        
+        WHILE j * j <= i DO
+        BEGIN
+            IF i % j = 0 THEN
+                is_prime := false;
+            j := j + 1;
+        END;
+        
+        IF is_prime THEN
+        BEGIN
+            write(i);     // Print the prime number
+            count := count + 1;
+        END;
+        
+        i := i + 1;
+    END;
+    write(count);
+END
