@@ -9,7 +9,7 @@ Language Definition
 1. a. Special symbols:
    - Operators: + - * % / = < <=
    - Separators: [, ], {, }, , , :, ;, space, <<
-   - Reserved Words: int, if, else, while, do, bool, char, cin, cout, main, double, string
+   - Reserved Words: int, if, else, while, do, bool, char, cin, cout, main, double, string, struct
 
 2. b. Identifiers:
    - A sequence of letters and digits, where the first character is a letter.
@@ -32,14 +32,14 @@ Language Definition
 
 3. Simple Statements
    - stmt_simple ::= stmt_assign | stmt_io
-   - stmt_assign ::= identifier ":=" expression
-   - stmt_io ::= "read" "(" identifier ")" | "write" "(" identifier ")"
+   - stmt_assign ::= identifier "=" expression
+   - stmt_io ::= "cin<<" "(" identifier ")" | "cout>>" "(" identifier ")"
 
 4. Structured Statements
    - stmt_struct ::= stmt_cmpd | stmt_if | stmt_while
    - stmt_cmpd ::= '{' stmt_list '}'
-   - stmt_if ::= 'if' '(' condition ')' '{' stmt ['else' stmt] '}'
-   - stmt_while ::= 'while' condition 'do' stmt
+   - stmt_if ::= 'if' '(' condition ')' '{' stmt '}' ['else' stmt] 
+   - stmt_while ::= 'while' '(' condition ')' stmt
 
 5. Conditions
    - condition ::= expression rel_op expression
