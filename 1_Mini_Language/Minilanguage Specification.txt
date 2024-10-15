@@ -41,14 +41,18 @@ Language Definition
    - stmt_if ::= 'if' '(' condition ')' '{' stmt '}' ['else' stmt] 
    - stmt_while ::= 'while' '(' condition ')' stmt
    - struct_decl ::= 'struct' identifier '{' member_list '}'
+
 5. Member List:
    - member_list ::= member_decl | member_decl ';' member_list
    - member_decl ::= DataType identifier
+
 6. Data Types:
    - DataType ::= int | bool | char | string | double | struct identifier
+
 7. Conditions:
    - condition ::= expression rel_op expression
    - rel_op ::= "<" | "<="
+
 8. Expressions and Terms:
    - expression ::= term | expression "+" term | expression "-" term
    - term ::= factor | term "*" factor | term "/" factor | term "%" factor
