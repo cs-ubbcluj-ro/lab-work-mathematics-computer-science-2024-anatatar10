@@ -9,7 +9,7 @@ Language Definition
 1. a. Special symbols:
    - Operators: + - * % / := < <=
    - Separators: [ ] { } , : ; space, <<
-   - Reserved Words: int, if, else, while, do, bool, char, cin, cout
+   - Reserved Words: int, if, else, while, do, bool, char, cin, cout, main, double, string
 
 2. b. Identifiers:
    - A sequence of letters and digits, where the first character is a letter.
