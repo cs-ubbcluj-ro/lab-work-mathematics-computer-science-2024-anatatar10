@@ -3,13 +3,13 @@ Language Definition
 1.1 Alphabet:
 1. a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
 2. b. Underscore character _
-3. c. Decimal digits (0-9)
+3. c. Decimal digits (0, 2, 4, 6, 8)
 
 1.2 Lexical
 1. a. Special symbols:
    - Operators: + - * % / := < <=
-   - Separators: [ ] { } , : ; space
-   - Reserved Words: read, write, int, if, else, while, begin, end, then, var, do, bool, char, struct
+   - Separators: [ ] { } , : ; space, <<
+   - Reserved Words: int, if, else, while, begin, do, bool, char, struct, cin
 
 2. b. Identifiers:
    - A sequence of letters and digits, where the first character is a letter.
