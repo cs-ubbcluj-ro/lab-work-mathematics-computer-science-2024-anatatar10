@@ -33,19 +33,23 @@ Language Definition
 3. Simple Statements
    - stmt_simple ::= stmt_assign | stmt_io
    - stmt_assign ::= identifier "=" expression
-   - stmt_io ::= "cin<<" "(" identifier ")" | "cout>>" "(" identifier ")"
+   - stmt_io ::= "cin <<" "(" identifier ")" | "cout >>" "(" identifier ")"
 
 4. Structured Statements
    - stmt_struct ::= stmt_cmpd | stmt_if | stmt_while
    - stmt_cmpd ::= '{' stmt_list '}'
    - stmt_if ::= 'if' '(' condition ')' '{' stmt '}' ['else' stmt] 
    - stmt_while ::= 'while' '(' condition ')' stmt
-
-5. Conditions
+   - struct_decl ::= 'struct' identifier '{' member_list '}'
+5. Member List:
+   - member_list ::= member_decl | member_decl ';' member_list
+   - member_decl ::= DataType identifier
+6. Data Types:
+   - DataType ::= int | bool | char | string | double | struct identifier
+7. Conditions:
    - condition ::= expression rel_op expression
    - rel_op ::= "<" | "<="
-
-6. Expressions and Terms
+8. Expressions and Terms:
    - expression ::= term | expression "+" term | expression "-" term
    - term ::= factor | term "*" factor | term "/" factor | term "%" factor
    - factor ::= "(" expression ")" | identifier | int_const
