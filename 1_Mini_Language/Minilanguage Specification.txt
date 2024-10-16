@@ -33,7 +33,7 @@ Language Definition
 3. Simple Statements
    - stmt_simple ::= stmt_assign | stmt_io
    - stmt_assign ::= identifier "=" expression
-   - stmt_io ::= "cin <<" "(" identifier ")" | "cout >>" "(" identifier ")"
+   - stmt_io ::= "cin >>" identifier  | "cout <<" "identifier 
 
 4. Structured Statements
    - stmt_struct ::= stmt_cmpd | stmt_if | stmt_while
