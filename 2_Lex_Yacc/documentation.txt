@@ -1,0 +1,55 @@
+
+Lex Program Documentation
+
+Overview:
+This Lex program scans a source code file (prime_numbers_problem.txt) and generates two outputs:
+1. Symbol Table (ST): A table containing unique identifiers (ID) and constants (CONST) found in the code.
+2. Program Internal Form (PIF): A list of tokens, including keywords, operators, separators, identifiers, and constants with references to the Symbol Table.
+
+Key Functionalities:
+
+- Keywords: Recognizes and prints common keywords such as int, if, else, etc., into the PIF but not into the Symbol Table.
+- Identifiers (ID): Adds unique identifiers to the Symbol Table and references them in the PIF.
+- Constants (CONST): Adds numeric and character constants to the Symbol Table and references them in the PIF.
+- Operators: Recognizes operators like +, -, *, /, and writes them into the PIF.
+- Relational Operators: Recognizes relational operators (==, <, <=, etc.) and writes them into the PIF.
+- Separators: Recognizes separators such as (), {}, ,, ;, and writes them into the PIF.
+- Lexical Errors: Detects invalid characters and prints an error message with the line and column number, and the type of error.
+
+Functions:
+
+1. addSymbol(const char* name, const char* type):
+Adds a symbol (identifier or constant) to the Symbol Table and assigns it a unique index.
+
+2. getSymbolIndex(const char* name):
+Returns the index of a symbol from the Symbol Table. If not found, returns -1.
+
+3. reportLexicalError(const char* errorType, const char* token, int line, int column):
+Reports detailed lexical errors, specifying the type, token, and its location (line and column).
+
+Error Handling:
+If the program encounters an unrecognized character, it outputs an error message in the format:
+Lexical Error at line X, column Y: Invalid character - 'Z'
+
+Program Flow:
+1. The input source file (prime_numbers_problem.txt) is opened.
+2. The Symbol Table is created in ST.out and the Program Internal Form is created in PIF.out.
+3. Lexical analysis is performed, and tokens are either added to the PIF or Symbol Table.
+4. Any unrecognized characters trigger lexical errors with line and column numbers.
+5. The files are closed after analysis is complete.
+
+Example Output:
+
+Symbol Table (ST):
+1: a (ID)
+2: 3 (CONST)
+3: b (ID)
+
+Program Internal Form (PIF):
+int : 0
+ID : 1
+= : 0
+CONST : 2
++ : 0
+ID : 3
+; : 0
