@@ -1,0 +1,31 @@
+int main() {
+    int i, j, count, k;
+    bool is_prime;
+    
+    cin >> k;        // Input the number k (how many primes to find)
+    count = 0;       // Count of primes found
+    i = 2;           // Start checking from the first prime number
+    
+    while (count < k) {
+        is_prime = true;
+        j = 2;
+        
+        while (j * j <= i) {
+            if (i % j == 0) {
+                is_prime = false;
+            }
+            j = j + 1;
+        }
+        
+        if (is_prime) {
+            cout << i << " ";  // Print the prime number
+            count = count + 1;
+        }
+        
+        i = i + 1;
+    }
+    
+    cout << endl << "Total primes found: " << count << endl;
+    
+    return 0;
+}
