@@ -1,0 +1,11 @@
+fa_in ::= states "\n" alphabet "\n" start_state "\n" final_states "\n" transitions
+states ::= state { " " state }
+alphabet ::= symbol { " " symbol }
+start_state ::= state
+final_states ::= state { " " state }
+transitions ::= transition { "\n" transition }
+transition ::= state_from " " symbol " " state_to
+state ::= identifier
+symbol ::= character
+identifier ::= letter { letter | digit }
+character ::= letter | digit
