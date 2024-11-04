@@ -10,7 +10,7 @@ class FiniteAutomaton {
 private:
     set<string> states;
     set<char> alphabet;
-    map<pair<string, char>, vector<string> > transitions; // Fix: added space between '>>'
+    map<pair<string, char>, vector<string> > transitions; 
     set<string> finalStates;
     string startState;
 
