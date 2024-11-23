@@ -1,0 +1,53 @@
+
+# Documentation for the Grammar
+
+## Notation
+
+- Non-terminals are written as plain text (e.g., program, stmt_list, expression).
+- Terminals (tokens) are enclosed in single quotes (e.g., 'int', '+', '(', ')').
+- Production rules are written in the format Non-terminal ::= Expansion.
+- Alternatives are separated by the pipe symbol |.
+- epsilon represents the empty string, indicating that the non-terminal can be replaced with nothing.
+
+## Grammar Structure
+
+- The start symbol is program, defining the overall structure of a valid program in the mini-language.
+- Statements are divided into simple statements (stmt_simple) and structured statements (stmt_struct).
+- Expressions and terms use recursion to handle operations like addition, subtraction, multiplication, etc.
+- Left recursion has been eliminated to make the grammar suitable for parsing algorithms like LL(1).
+
+## Terminals and Non-terminals
+
+- Terminals:
+  - Keywords: 'int', 'main', 'return', 'if', 'else', 'while', 'struct', 'cin', 'cout'
+  - Operators and symbols: '=', '+', '-', '*', '/', '%', '<', '>', '<=', '>=', '==', '!=', '(', ')', '{', '}', ';', '>>', '<<'
+  - Identifiers (IDENTIFIER) and integer constants (INT_CONST) are terminals defined by the lexer.
+
+- Non-terminals:
+  - program, stmt_list, stmt, stmt_simple, stmt_assign, stmt_io, stmt_struct, stmt_cmpd, stmt_if, else_part, stmt_while, struct_decl, member_list, member_decl, DataType, condition, rel_op, expression, expression_tail, term, term_tail, factor
+
+## Explanation of Key Productions
+
+- Program Structure:
+  - program defines the main function structure with a stmt_list and a return statement.
+
+- Statements:
+  - stmt_list allows for zero or more statements.
+  - stmt can be a simple statement followed by a semicolon or a structured statement.
+
+- Expressions and Terms:
+  - expression and term use helper non-terminals (expression_tail, term_tail) to handle operator precedence without left recursion.
+
+- Conditions:
+  - condition consists of two expressions connected by a relational operator.
+
+- Data Types:
+  - DataType includes basic types and user-defined structs.
+
+## Parsing Considerations
+
+- Elimination of Left Recursion:
+  - Left recursion is eliminated to make the grammar suitable for top-down parsing techniques.
+
+- Terminals like IDENTIFIER and INT_CONST:
+  - These are tokens that should be defined in the lexical analysis phase according to the provided lexical rules.
