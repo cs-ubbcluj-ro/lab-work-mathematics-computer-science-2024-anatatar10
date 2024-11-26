@@ -6,7 +6,7 @@ N = {"program", "stmt_list", "stmt", "stmt_simple", "stmt_assign", "stmt_io", "s
 
 Σ = {'+', '-', '*', '/', '%', '(', ')', '=', 'cin', 'cout', 'if', 'else', 'while', 'struct', '{', '}', '>>', '<<', 'int', 'main', 
     'return', ';', 'IDENTIFIER', 'INT_CONST', '<', '<=', '>', '>=', '==', '!=', 
-    'bool', 'char', 'string', 'double'}
+    'bool', 'char', 'string', 'double', 'epsilon'}
 
 S = program
 
