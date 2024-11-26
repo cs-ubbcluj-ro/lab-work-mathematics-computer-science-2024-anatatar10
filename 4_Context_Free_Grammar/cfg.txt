@@ -8,7 +8,9 @@ N = {"program", "stmt_list", "stmt", "stmt_simple", "stmt_assign", "stmt_io", "s
     'return', ';', 'IDENTIFIER', 'INT_CONST', '<', '<=', '>', '>=', '==', '!=', 
     'bool', 'char', 'string', 'double'}
 
+S = program
 
+P = {
 
 program -> 'int' 'main' '(' ')' '{' stmt_list 'return' INT_CONST ';' '}'
 
@@ -53,3 +55,5 @@ term -> factor term_tail
 term_tail -> ('*' | '/' | '%') factor term_tail | epsilon
 
 factor -> '(' expression ')' | IDENTIFIER | INT_CONST
+
+}
