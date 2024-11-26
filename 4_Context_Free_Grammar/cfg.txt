@@ -1,43 +1,55 @@
-program ::= 'int' 'main' '(' ')' '{' stmt_list 'return' INT_CONST ';' '}'
+G = {N, 𝚺, P, S}
 
-stmt_list ::= stmt stmt_list | epsilon
+N = {"program", "stmt_list", "stmt", "stmt_simple", "stmt_assign", "stmt_io", "stmt_struct", "stmt_cmpd", "stmt_if", "else_part", 
+    "stmt_while", "struct_decl", "member_list", "member_decl", "DataType", "condition", "rel_op", "expression", "expression_tail", 
+    "term", "term_tail", "factor"}
 
-stmt ::= stmt_simple ';' | stmt_struct
+Σ = {'+', '-', '*', '/', '%', '(', ')', '=', 'cin', 'cout', 'if', 'else', 'while', 'struct', '{', '}', '>>', '<<', 'int', 'main', 
+    'return', ';', 'IDENTIFIER', 'INT_CONST', '<', '<=', '>', '>=', '==', '!=', 
+    'bool', 'char', 'string', 'double'}
 
-stmt_simple ::= stmt_assign | stmt_io
 
-stmt_assign ::= IDENTIFIER '=' expression
 
-stmt_io ::= 'cin' '>>' IDENTIFIER | 'cout' '<<' IDENTIFIER
+program -> 'int' 'main' '(' ')' '{' stmt_list 'return' INT_CONST ';' '}'
 
-stmt_struct ::= stmt_cmpd | stmt_if | stmt_while | struct_decl
+stmt_list -> stmt stmt_list | epsilon
 
-stmt_cmpd ::= '{' stmt_list '}'
+stmt -> stmt_simple ';' | stmt_struct
 
-stmt_if ::= 'if' '(' condition ')' stmt else_part
+stmt_simple -> stmt_assign | stmt_io
 
-else_part ::= 'else' stmt | epsilon
+stmt_assign -> IDENTIFIER '=' expression
 
-stmt_while ::= 'while' '(' condition ')' stmt
+stmt_io -> 'cin' '>>' IDENTIFIER | 'cout' '<<' IDENTIFIER
 
-struct_decl ::= 'struct' IDENTIFIER '{' member_list '}'
+stmt_struct -> stmt_cmpd | stmt_if | stmt_while | struct_decl
 
-member_list ::= member_decl ';' member_list | epsilon
+stmt_cmpd -> '{' stmt_list '}'
 
-member_decl ::= DataType IDENTIFIER
+stmt_if -> 'if' '(' condition ')' stmt else_part
 
-DataType ::= 'int' | 'bool' | 'char' | 'string' | 'double' | 'struct' IDENTIFIER
+else_part -> 'else' stmt | epsilon
 
-condition ::= expression rel_op expression
+stmt_while -> 'while' '(' condition ')' stmt
 
-rel_op ::= '<' | '<=' | '>' | '>=' | '==' | '!='
+struct_decl -> 'struct' IDENTIFIER '{' member_list '}'
 
-expression ::= term expression_tail
+member_list -> member_decl ';' member_list | epsilon
 
-expression_tail ::= ('+' | '-') term expression_tail | epsilon
+member_decl -> DataType IDENTIFIER
 
-term ::= factor term_tail
+DataType -> 'int' | 'bool' | 'char' | 'string' | 'double' | 'struct' IDENTIFIER
 
-term_tail ::= ('*' | '/' | '%') factor term_tail | epsilon
+condition -> expression rel_op expression
 
-factor ::= '(' expression ')' | IDENTIFIER | INT_CONST
+rel_op -> '<' | '<=' | '>' | '>=' | '==' | '!='
+
+expression -> term expression_tail
+
+expression_tail -> ('+' | '-') term expression_tail | epsilon
+
+term -> factor term_tail
+
+term_tail -> ('*' | '/' | '%') factor term_tail | epsilon
+
+factor -> '(' expression ')' | IDENTIFIER | INT_CONST
