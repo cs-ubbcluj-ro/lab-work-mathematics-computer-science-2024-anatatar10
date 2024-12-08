@@ -2,9 +2,9 @@ int main() {
     int i, j, count, k;
     bool is_prime;
     
-    cin >> k;        // Input the number k (how many primes to find)
-    count = 0;       // Count of primes found
-    i = 2;           // Start checking from the first prime number
+    cin >> k;        
+    count = 0;      
+    i = 2;           
     
     while (count < k) {
         is_prime = true;
@@ -18,7 +18,7 @@ int main() {
         }
         
         if (is_prime) {
-            cout << i << " ";  // Print the prime number
+            cout << i << " ";  
             count = count + 1;
         }
         
