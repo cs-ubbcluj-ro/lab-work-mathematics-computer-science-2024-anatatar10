@@ -1,55 +1,160 @@
+Documentation:
 
-Lex Program Documentation
+1: program -> INT MAIN ( ) { stmt_list final_return }
+   Represents the entire program. On success, prints "Program syntactic correct" and the production numbers used.
 
-Overview:
-This Lex program scans a source code file (prime_numbers_problem.txt) and generates two outputs:
-1. Symbol Table (ST): A table containing unique identifiers (ID) and constants (CONST) found in the code.
-2. Program Internal Form (PIF): A list of tokens, including keywords, operators, separators, identifiers, and constants with references to the Symbol Table.
+2: final_return -> RETURN INT_CONST SEMICOLON
+   The final return statement in the program, typically 'return 0;'.
 
-Key Functionalities:
+3: stmt_list -> stmt_list stmt | ε
+   A list of statements, which can be empty or multiple statements.
 
-- Keywords: Recognizes and prints common keywords such as int, if, else, etc., into the PIF but not into the Symbol Table.
-- Identifiers (ID): Adds unique identifiers to the Symbol Table and references them in the PIF.
-- Constants (CONST): Adds numeric and character constants to the Symbol Table and references them in the PIF.
-- Operators: Recognizes operators like +, -, *, /, and writes them into the PIF.
-- Relational Operators: Recognizes relational operators (==, <, <=, etc.) and writes them into the PIF.
-- Separators: Recognizes separators such as (), {}, ,, ;, and writes them into the PIF.
-- Lexical Errors: Detects invalid characters and prints an error message with the line and column number, and the type of error.
+4: stmt -> stmt_simple SEMICOLON
+   A simple statement followed by a semicolon.
 
-Functions:
+5: stmt -> stmt_struct SEMICOLON
+   A struct declaration statement.
 
-1. addSymbol(const char* name, const char* type):
-Adds a symbol (identifier or constant) to the Symbol Table and assigns it a unique index.
+6: stmt -> stmt_cmpd
+   A compound statement (a block).
 
-2. getSymbolIndex(const char* name):
-Returns the index of a symbol from the Symbol Table. If not found, returns -1.
+7: stmt -> stmt_if
+   An if-statement.
 
-3. reportLexicalError(const char* errorType, const char* token, int line, int column):
-Reports detailed lexical errors, specifying the type, token, and its location (line and column).
+8: stmt -> stmt_while
+   A while-statement.
 
-Error Handling:
-If the program encounters an unrecognized character, it outputs an error message in the format:
-Lexical Error at line X, column Y: Invalid character - 'Z'
+9: stmt_simple -> stmt_assign
+   A simple assignment statement.
 
-Program Flow:
-1. The input source file (prime_numbers_problem.txt) is opened.
-2. The Symbol Table is created in ST.out and the Program Internal Form is created in PIF.out.
-3. Lexical analysis is performed, and tokens are either added to the PIF or Symbol Table.
-4. Any unrecognized characters trigger lexical errors with line and column numbers.
-5. The files are closed after analysis is complete.
+10: stmt_simple -> stmt_io
+    An input/output statement.
 
-Example Output:
+11: stmt_simple -> DataType IDENTIFIER
+    A variable declaration statement (like 'int x;').
 
-Symbol Table (ST):
-1: a (ID)
-2: 3 (CONST)
-3: b (ID)
+12: stmt_assign -> IDENTIFIER = expression
+    An assignment statement, e.g. 'x = 5;'.
 
-Program Internal Form (PIF):
-int : 0
-ID : 1
-= : 0
-CONST : 2
-+ : 0
-ID : 3
-; : 0
+13: stmt_io -> CIN >> IDENTIFIER
+    Input operation, e.g. 'cin >> x;'.
+
+14: stmt_io -> COUT << printable_list
+    Output operation, e.g. 'cout << x << "hello";'.
+
+15: printable_list -> factor
+    A single factor to be printed.
+
+16: printable_list -> factor << printable_list
+    Multiple factors chained with '<<', e.g. 'cout << x << y'.
+
+17: factor -> ( expression )
+    A factor can be a parenthesized expression.
+
+18: factor -> IDENTIFIER
+    A factor can be a variable name.
+
+19: factor -> INT_CONST
+    A factor can be an integer constant.
+
+20: factor -> STRING_LITERAL
+    A factor can be a string literal.
+
+21: stmt_struct -> struct_decl
+    A struct declaration statement.
+
+22: stmt_cmpd -> { stmt_list }
+    A block containing a list of statements.
+
+23: stmt_if -> IF ( condition ) stmt
+    An if-statement without else part.
+
+24: stmt_if -> IF ( condition ) stmt ELSE stmt
+    An if-statement with an else clause.
+
+25: stmt_while -> WHILE ( condition ) stmt
+    A while-loop statement.
+
+26: struct_decl -> STRUCT IDENTIFIER { member_list }
+    Declares a struct with given members.
+
+27: member_list -> member_decl ; member_list
+    A list of struct members.
+
+28: member_list -> ε
+    Empty member list (no members).
+
+29: member_decl -> DataType IDENTIFIER
+    A single struct member declaration.
+
+30: DataType -> INT
+    The data type is int.
+
+31: DataType -> BOOL
+    The data type is bool.
+
+32: DataType -> CHAR
+    The data type is char.
+
+33: DataType -> STRING
+    The data type is string.
+
+34: DataType -> DOUBLE
+    The data type is double.
+
+35: DataType -> STRUCT IDENTIFIER
+    The data type is a user-defined struct type.
+
+36: condition -> expression
+    A condition can be just an expression (non-zero is true).
+
+37: condition -> expression rel_op expression
+    A condition that compares two expressions.
+
+38: rel_op -> <
+    Less-than operator.
+
+39: rel_op -> <=
+    Less-than-or-equal operator.
+
+40: rel_op -> >
+    Greater-than operator.
+
+41: rel_op -> >=
+    Greater-than-or-equal operator.
+
+42: rel_op -> ==
+    Equal-to operator.
+
+43: rel_op -> !=
+    Not-equal-to operator.
+
+44: expression -> term expression_tail
+    An expression consisting of a term and optional additions/subtractions.
+
+45: expression_tail -> + term expression_tail
+    Addition operations in the expression tail.
+
+46: expression_tail -> - term expression_tail
+    Subtraction operations in the expression tail.
+
+47: expression_tail -> ε
+    No more additions or subtractions.
+
+48: term -> factor term_tail
+    A term is a factor with optional multiplications/divisions/modulos.
+
+49: term_tail -> * factor term_tail
+    Multiplication in the term tail.
+
+50: term_tail -> / factor term_tail
+    Division in the term tail.
+
+51: term_tail -> % factor term_tail
+    Modulo in the term tail.
+
+52: term_tail -> ε
+    End of the term tail, no more operations.
+
+---
+
